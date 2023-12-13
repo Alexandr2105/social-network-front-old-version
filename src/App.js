@@ -17,7 +17,7 @@ const App = (props) => {
                 <NavBar/>
             </div>
             <div className="nav-links">
-                <Route path="/profile" render={() => <Profile state={props.state.getState()}/>}/>
+                <Route path="/profile" render={() => <Profile state={props.state.profileReducer} dispatch={props.dispatch}/>}/>
                 <Route path="/message" render={() => <Messages/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Musics/>}/>

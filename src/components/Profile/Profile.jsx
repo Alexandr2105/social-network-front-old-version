@@ -7,10 +7,8 @@ const Profile = (props) => {
         <div className={mod.content}>
             <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="img"/>
             <div>
-                <Posts state={props.state.profileReducer}/>
+                <Posts state={props.state} dispatch={props.dispatch}/>
             </div>
-            <textarea placeholder="Введите текст"/>
-            <button>Send</button>
         </div>
     );
 }

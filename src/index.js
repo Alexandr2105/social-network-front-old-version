@@ -10,7 +10,7 @@ import store from "./redux/reduxStore";
 const reRender = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state}/>
+            <App state={state} dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>,
         document.getElementById('root')
     );
@@ -22,5 +22,8 @@ const reRender = (state) => {
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
-reRender(store);
-store.subscribe(reRender);
+reRender(store.getState());
+store.subscribe(() => {
+    const state = store.getState();
+    reRender(state);
+});
