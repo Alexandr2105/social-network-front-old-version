@@ -1,0 +1,11 @@
+.post {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.post img {
+    width: 50px;
+    border-radius: 50%;
+}

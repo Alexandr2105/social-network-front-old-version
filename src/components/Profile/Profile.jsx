@@ -1,31 +1,17 @@
 import React from "react";
+import mod from "./Profile.module.css"
+import Posts from "./Posts/Posts";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
-        <div className="content">
+        <div className={mod.content}>
+            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="img"/>
             <div>
-                <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="img"/>
+                <Posts state={props.state.profileReducer}/>
             </div>
-            <div>
-                {<img src="https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg" alt="avatar"/>}
-            </div>
-            <div>
-                my posts
-                <div>
-                    new post
-                </div>
-                <div>
-                    <div>
-                        post1
-                    </div>
-                    <div>
-                        post2
-                    </div>
-                </div>
-            </div>
-            <div></div>
+            <textarea placeholder="Введите текст"/>
+            <button>Send</button>
         </div>
-
     );
 }
 

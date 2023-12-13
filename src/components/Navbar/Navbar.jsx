@@ -1,23 +1,15 @@
 import React from "react";
+import mod from "./Navbar.module.css";
+import Item from "./NavItems/Item";
 
 const NavBar = () => {
     return (
-        <nav className="nav">
-            <div>
-                <a>Profile</a>
-            </div>
-            <div>
-                <a>Message</a>
-            </div>
-            <div>
-                <a>News</a>
-            </div>
-            <div>
-                <a>Music</a>
-            </div>
-            <div>
-                <a>Settings</a>
-            </div>
+        <nav className={mod.nav}>
+            <Item path="/profile" text="Profile"/>
+            <Item path="/message" text="Message"/>
+            <Item path="/news" text="News"/>
+            <Item path="/music" text="Music"/>
+            <Item path="/setting" text="Settings"/>
         </nav>
     );
 }

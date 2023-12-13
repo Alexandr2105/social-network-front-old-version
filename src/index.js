@@ -5,13 +5,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
+import store from "./redux/reduxStore";
 
-ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
-    document.getElementById('root')
-);
+const reRender = (stata) => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={stata}/>
+        </BrowserRouter>,
+        document.getElementById('root')
+    );
+}
 
 
 // API
@@ -19,3 +22,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+reRender(store);
+store.subscribe(reRender);
