@@ -7,10 +7,10 @@ import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/reduxStore";
 
-const reRender = (stata) => {
+const reRender = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={stata}/>
+            <App state={state}/>
         </BrowserRouter>,
         document.getElementById('root')
     );
