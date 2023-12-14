@@ -36,3 +36,7 @@
     grid-area: c;
     background-color: aqua;
 }
+
+.navbar .active {
+    color: black;
+}
