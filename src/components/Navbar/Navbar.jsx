@@ -6,9 +6,9 @@ const NavBar = () => {
     return (
         <nav className={mod.nav}>
             <Item path="/profile" text="Profile"/>
-            <Item path="/message" text="Message"/>
+            <Item path="/message" text="Messages"/>
             <Item path="/news" text="News"/>
-            <Item path="/music" text="Music"/>
+            <Item path="/music" text="Musics"/>
             <Item path="/setting" text="Settings"/>
         </nav>
     );
