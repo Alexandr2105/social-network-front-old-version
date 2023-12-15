@@ -1,0 +1,13 @@
+.sidebar {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    color: wheat;
+}
+
+.sidebar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto;
+}

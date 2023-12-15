@@ -1,9 +1,10 @@
-.nav {
-    margin: 20px 0;
+.sidebar a {
+    display: block;
     text-align: center;
-}
-
-.nav a {
     color: wheat;
     text-decoration: none;
+}
+
+.friends {
+    display: flex;
 }

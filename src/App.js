@@ -8,6 +8,8 @@ import Messages from "./components/Dialogs/Messages";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Musics from "./components/Musics/Musics";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Friends from "./components/Friends/Friends";
 
 const App = (props) => {
     return (
@@ -15,6 +17,7 @@ const App = (props) => {
             <Header/>
             <div className="navbar">
                 <NavBar/>
+                <Sidebar state={props.state.sidebarReducer}/>
             </div>
             <div className="nav-links">
                 <Route path="/profile"
@@ -24,6 +27,7 @@ const App = (props) => {
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Musics/>}/>
                 <Route path="/setting" render={() => <Settings/>}/>
+                <Route path="/friends" render={() => <Friends state={props.state.sidebarReducer}/>}/>
             </div>
         </div>);
 }
