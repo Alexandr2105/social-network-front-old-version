@@ -1,8 +1,10 @@
-.dialogs {
+.dialogs a {
     display: flex;
     align-items: center;
     gap: 20px;
     margin: 10px;
+    text-decoration: none;
+    color: black;
 }
 
 .dialogs img {

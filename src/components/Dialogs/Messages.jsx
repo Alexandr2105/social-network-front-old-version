@@ -8,7 +8,7 @@ import mod from "./Messges.module.css"
 const Messages = (props) => {
 
     const message = props.state.messages.map(m => <Message message={m.message}/>);
-    const people = props.state.dialogs.map(d => <People name={d.name} avatar={d.avatar}/>)
+    const people = props.state.dialogs.map(d => <People id={d.id.toString()} name={d.name} avatar={d.avatar}/>)
 
     return (
         <div>
