@@ -7,7 +7,7 @@ const Sidebar = (props) => (
     <div className={mod.sidebar}>
         <NavLink to="/friends">Friends</NavLink>
         <div className={mod.friends}>
-            {<SidebarFriends state={props.state.sidebar}/>}
+            {<SidebarFriends state={props.state.sidebarReducer.sidebar}/>}
         </div>
     </div>
 )

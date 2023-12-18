@@ -2,3 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
 }
+
+.dialogs textarea {
+    margin: 20px 0;
+}

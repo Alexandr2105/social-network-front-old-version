@@ -1,4 +1,4 @@
-const _state= {
+const store = {
     dialogsPage: {
         dialogs: [
             {
