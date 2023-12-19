@@ -23,18 +23,23 @@ const UPDATE_TEXT_NEW_POST_ACTION_TYPE = "UPDATE_TEXT_NEW_POST_ACTION_TYPE";
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST_ACTION_TYPE:
+        case ADD_POST_ACTION_TYPE: {
             const newPost = {
                 id: 4,
                 message: state.updateNewPost,
                 likes: 0
             }
-            state.posts.push(newPost);
-            state.updateNewPost = "";
-            return state;
-        case UPDATE_TEXT_NEW_POST_ACTION_TYPE:
-            state.updateNewPost = action.newText;
-            return state;
+            const stateCopy={...state};
+            stateCopy.posts=[...state.posts];
+            stateCopy.posts.push(newPost);
+            stateCopy.updateNewPost = "";
+            return stateCopy;
+        }
+        case UPDATE_TEXT_NEW_POST_ACTION_TYPE: {
+            const stateCopy={...state}
+            stateCopy.updateNewPost = action.newText;
+            return stateCopy;
+        }
         default :
             return state;
     }
