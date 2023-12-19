@@ -42,22 +42,14 @@ const UPDATE_TEXT_NEW_MESSAGE_ACTION_TYPE = "UPDATE_TEXT_NEW_MESSAGE_ACTION_TYPE
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_MESSAGE_ACTION_TYPE: {
+        case ADD_MESSAGE_ACTION_TYPE:
             const newMessage = {
                 id: 4,
                 message: state.updateNewMessage,
             }
-            const stateCopy = {...state};
-            stateCopy.dialogs = [...state.dialogs];
-            stateCopy.messages = [...state.messages];
-            stateCopy.messages.push(newMessage);
-            stateCopy.updateNewMessage = "";
-            return stateCopy;
-        }
+            return {...state, messages: [...state.messages, newMessage], updateNewMessage: ""}
         case UPDATE_TEXT_NEW_MESSAGE_ACTION_TYPE: {
-            const stateCopy={...state};
-            stateCopy.updateNewMessage = action.newText;
-            return stateCopy;
+            return {...state, updateNewMessage: action.newText};
         }
         default :
             return state;
