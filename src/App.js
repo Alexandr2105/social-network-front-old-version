@@ -10,6 +10,7 @@ import Musics from "./components/Musics/Musics";
 import MessagesContainer from "./components/Dialogs/MessagesContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
+import UsersContainer from "./components/UsersContainer/UsersContainer";
 
 const App = () => {
     return (
@@ -28,6 +29,7 @@ const App = () => {
                 <Route path="/music" render={() => <Musics/>}/>
                 <Route path="/setting" render={() => <Settings/>}/>
                 <Route path="/friends" render={() => <FriendsContainer/>}/>
+                <Route path="/users" render={() => <UsersContainer/>}/>
             </div>
         </div>);
 }

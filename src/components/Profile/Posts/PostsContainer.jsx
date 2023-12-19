@@ -3,9 +3,9 @@ import Posts from "./Posts";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
-    return{
-        posts:state.profileReducer.posts,
-        updateNewPost:state.profileReducer.updateNewPost,
+    return {
+        posts: state.profileReducer.posts,
+        updateNewPost: state.profileReducer.updateNewPost,
     };
 }
 const mapDispatchToProps = (dispatch) => {
@@ -14,6 +14,6 @@ const mapDispatchToProps = (dispatch) => {
         cratePost: () => dispatch(addPostActionCreator()),
     }
 }
-const PostsContainer = connect(mapStateToProps,mapDispatchToProps)(Posts)
+const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
 
 export default PostsContainer;
