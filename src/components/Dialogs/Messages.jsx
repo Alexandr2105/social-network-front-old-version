@@ -5,8 +5,8 @@ import mod from "./Messges.module.css"
 
 const Messages = (props) => {
 
-    const message = props.messages.map(m => <Message message={m.message}/>);
-    const people = props.dialogs.map(d => <People id={d.id.toString()} name={d.name}
+    const message = props.messages.map(m => <Message key={m.id} message={m.message}/>);
+    const people = props.dialogs.map(d => <People key={d.id} id={d.id.toString()} name={d.name}
                                                   avatar={d.avatar}/>)
 
     const onChange = (e) => {
@@ -25,7 +25,7 @@ const Messages = (props) => {
                     {people}
                 </div>
                 <div>
-                    <p>{message}</p>
+                    <div>{message}</div>
                     <div>
                         <textarea onChange={onChange} placeholder="Введите текст"
                                   value={props.updateNewMessage}/>

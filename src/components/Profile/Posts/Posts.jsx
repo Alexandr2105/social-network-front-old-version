@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import mod from "./Posts.module.css"
 
 const Posts = (props) => {
-    const posts = props.posts.map(p => (<Post message={p.message} likes={p.likes}/>))
+    const posts = props.posts.map(p => (<Post key={p.id} message={p.message} likes={p.likes}/>))
 
     const onChange = (e) => {
         const text = e.target.value;
