@@ -11,23 +11,23 @@ import MessagesContainer from "./components/Dialogs/MessagesContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 
-const App = (props) => {
+const App = () => {
     return (
         <div className="app-wrapper">
             <Header/>
             <div className="navbar">
                 <NavBar/>
-                <SidebarContainer store={props.store}/>
+                <SidebarContainer/>
             </div>
             <div className="nav-links">
                 <Route path="/profile"
-                       render={() => <Profile store={props.store}/>}/>
+                       render={() => <Profile/>}/>
                 <Route exact path="/message"
-                       render={() => <MessagesContainer store={props.store}/>}/>
+                       render={() => <MessagesContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Musics/>}/>
                 <Route path="/setting" render={() => <Settings/>}/>
-                <Route path="/friends" render={() => <FriendsContainer store={props.store}/>}/>
+                <Route path="/friends" render={() => <FriendsContainer/>}/>
             </div>
         </div>);
 }

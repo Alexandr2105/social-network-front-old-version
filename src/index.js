@@ -6,11 +6,14 @@ import './index.css';
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/reduxStore";
+import {Provider} from "react-redux";
 
-const reRender = (state) => {
+const reRender = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} dispatch={store.dispatch} store={store}/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </BrowserRouter>,
         document.getElementById('root')
     );
@@ -22,8 +25,5 @@ const reRender = (state) => {
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
-reRender(store.getState());
-store.subscribe(() => {
-    const state = store.getState();
-    reRender(state);
-});
+reRender();
+store.subscribe(reRender);

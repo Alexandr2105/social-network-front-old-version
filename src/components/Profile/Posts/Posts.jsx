@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import mod from "./Posts.module.css"
 
 const Posts = (props) => {
-    const posts = props.state.profileReducer.posts.map(p => (<Post message={p.message} likes={p.likes}/>))
+    const posts = props.posts.map(p => (<Post message={p.message} likes={p.likes}/>))
 
     const onChange = (e) => {
         const text = e.target.value;
@@ -16,7 +16,7 @@ const Posts = (props) => {
 
     return (
         <div className={mod.textArea}>
-            <textarea onChange={onChange} placeholder="Введите текст" value={props.state.profileReducer.updateNewPost}/>
+            <textarea onChange={onChange} placeholder="Введите текст" value={props.updateNewPost}/>
             <button onClick={createPost}>Send</button>
             {posts}
         </div>
