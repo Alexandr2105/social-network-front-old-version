@@ -1,5 +1,40 @@
+.user {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    margin: 20px;
+}
+
 .user img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+.avatarAndButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.informationAboutUser {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    border: 2px solid dimgrey;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.nameAndStatus {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
