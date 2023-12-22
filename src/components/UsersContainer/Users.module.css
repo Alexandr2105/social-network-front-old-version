@@ -38,3 +38,20 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.pages {
+    text-align: center;
+}
+
+.pages p {
+    margin: 5px;
+    padding: 0 3px;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid grey;
+    background-color: wheat;
+}
+
+.currentPage {
+    font-weight: bold;
+}
