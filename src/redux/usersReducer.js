@@ -2,13 +2,15 @@ const initialState = {
     users: [],
     pagesCount: 0,
     currentPage: 1,
+    isFetching: false,
 }
 
 const FOLLOW_ON = "FOLLOW_ON";
 const FOLLOW_OFF = "FOLLOW_OFF";
 const SET_USERS = "SET_USERS";
 const SET_PAGES_COUNT = "SET_PAGES_COUNT";
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const IS_FETCHING = "IS_FETCHING";
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -30,6 +32,9 @@ const usersReducer = (state = initialState, action) => {
         case SET_CURRENT_PAGE: {
             return {...state, currentPage: action.currentPage}
         }
+        case IS_FETCHING: {
+            return {...state, isFetching: action.status}
+        }
         default:
             return state;
     }
@@ -40,5 +45,6 @@ export const unfollow = (userId) => ({type: FOLLOW_OFF, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setPagesCount = (pagesCount) => ({type: SET_PAGES_COUNT, pagesCount})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setFetching = (status) => ({type: IS_FETCHING, status})
 
 export default usersReducer;
