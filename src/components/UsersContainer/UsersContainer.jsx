@@ -15,7 +15,7 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.setFetching(true);
-        axios.get(`http://localhost:3001/users?pageNumber=${this.props.currentPage}`).then(response => {
+        axios.get(`https://back-end-for-social-network.vercel.app/users?pageNumber=${this.props.currentPage}`).then(response => {
             this.props.setFetching(false);
             this.props.setUsers(response.data.items);
             this.props.setPagesCount(response.data.pagesCount);
@@ -24,7 +24,7 @@ class UsersContainer extends React.Component {
 
     activePage = (p) => {
         this.props.setFetching(true);
-        axios.get(`http://localhost:3001/users?pageNumber=${p}`).then(response => {
+        axios.get(`https://back-end-for-social-network.vercel.app/users?pageNumber=${p}`).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setFetching(false);
         })
