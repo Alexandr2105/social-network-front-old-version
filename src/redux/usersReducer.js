@@ -15,12 +15,13 @@ const IS_FETCHING = "IS_FETCHING";
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW_ON:
+            console.log(state);
             return {
-                ...state, users: state.users.map(u => u.userId === action.userId ? {...u, follow: true} : u)
+                ...state, users: state.users.map(u => u.id === action.userId ? {...u, follow: true} : u)
             }
         case FOLLOW_OFF: {
             return {
-                ...state, users: state.users.map(u => u.userId === action.userId ? {...u, follow: false} : u)
+                ...state, users: state.users.map(u => u.id === action.userId ? {...u, follow: false} : u)
             }
         }
         case SET_USERS: {

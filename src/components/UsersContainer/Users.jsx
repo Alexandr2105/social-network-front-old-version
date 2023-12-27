@@ -22,11 +22,11 @@ const Users = (props) => {
                 </div>
                 <div>
                     {props.users.map(u => (
-                            <div key={u.userId} className={mod.user}>
+                            <div key={u.id} className={mod.user}>
                                 <div className={mod.avatarAndButton}>
                                     <img src={u.avatar === null ? avatar : u.avatar} alt="avatar"/>
                                     <button
-                                        onClick={() => u.follow ? props.unfollow(u.userId) : props.follow(u.userId)}>
+                                        onClick={() => u.follow ? props.unfollow(u.id) : props.follow(u.id)}>
                                         {u.follow ? "Follow" : "Unfollow"}
                                     </button>
                                 </div>
