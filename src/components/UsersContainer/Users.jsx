@@ -2,6 +2,7 @@ import React from "react";
 import mod from "./Users.module.css"
 import avatar from "../../assets/images/images.png"
 import Preloader from "../../common/Preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
     let arrayPages = [];
@@ -24,7 +25,11 @@ const Users = (props) => {
                     {props.users.map(u => (
                             <div key={u.id} className={mod.user}>
                                 <div className={mod.avatarAndButton}>
-                                    <img src={u.avatar === null ? avatar : u.avatar} alt="avatar"/>
+                                    <NavLink to={"/profile"}>
+                                        <img
+                                            src={u.profile === null || u.profile.avatar === null ? avatar : u.profile.avatar}
+                                            alt="avatar"/>
+                                    </NavLink>
                                     <button
                                         onClick={() => u.follow ? props.unfollow(u.id) : props.follow(u.id)}>
                                         {u.follow ? "Follow" : "Unfollow"}
@@ -33,11 +38,11 @@ const Users = (props) => {
                                 <div className={mod.informationAboutUser}>
                                     <div className={mod.nameAndStatus}>
                                         <p>{u.fullName}</p>
-                                        <p>{u.status}</p>
+                                        <p>{u.profile?.status}</p>
                                     </div>
                                     <div className={mod.location}>
-                                        <p>{u.country},</p>
-                                        <p>{u.city}</p>
+                                        <p>{u.profile?.country}</p>
+                                        <p>{u.profile?.city}</p>
                                     </div>
                                 </div>
                             </div>

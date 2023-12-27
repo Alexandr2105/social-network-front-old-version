@@ -15,11 +15,13 @@ const initialState = {
         }
     ],
     updateNewPost: "",
+    profile: null,
 };
 
 
 const ADD_POST_ACTION_TYPE = "ADD_POST_ACTION_TYPE";
 const UPDATE_TEXT_NEW_POST_ACTION_TYPE = "UPDATE_TEXT_NEW_POST_ACTION_TYPE";
+const UPDATE_PROFILE_ACTION_TYPE = "UPDATE_PROFILE_ACTION_TYPE";
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -34,6 +36,9 @@ const profileReducer = (state = initialState, action) => {
         case UPDATE_TEXT_NEW_POST_ACTION_TYPE: {
             return {...state, updateNewPost: action.newText}
         }
+        case UPDATE_PROFILE_ACTION_TYPE: {
+            return {...state, profile: action.profile}
+        }
         default :
             return state;
     }
@@ -41,5 +46,6 @@ const profileReducer = (state = initialState, action) => {
 
 export const addPostActionCreator = () => ({type: ADD_POST_ACTION_TYPE});
 export const updateTextNewPostActionCreator = (text) => ({type: UPDATE_TEXT_NEW_POST_ACTION_TYPE, newText: text});
+export const updateProfileActionCreator = (profile) => ({type: UPDATE_PROFILE_ACTION_TYPE, profile: profile});
 
 export default profileReducer;

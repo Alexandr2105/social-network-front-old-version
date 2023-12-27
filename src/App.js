@@ -2,7 +2,6 @@ import './App.css';
 import React from "react";
 import Header from "./components/Header/Header";
 import NavBar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
@@ -11,6 +10,7 @@ import MessagesContainer from "./components/Dialogs/MessagesContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/UsersContainer/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = () => {
     return (
@@ -22,7 +22,7 @@ const App = () => {
             </div>
             <div className="nav-links">
                 <Route path="/profile"
-                       render={() => <Profile/>}/>
+                       render={() => <ProfileContainer/>}/>
                 <Route exact path="/message"
                        render={() => <MessagesContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
