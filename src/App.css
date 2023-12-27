@@ -31,11 +31,13 @@
 .navbar {
     grid-area: n;
     background-color: brown;
+    min-height: 100vw;
 }
 
 .nav-links {
     grid-area: c;
     background-color: aqua;
+    min-height: 100vw;
 }
 
 .navbar .active {
