@@ -25,7 +25,7 @@ const Users = (props) => {
                     {props.users.map(u => (
                             <div key={u.id} className={mod.user}>
                                 <div className={mod.avatarAndButton}>
-                                    <NavLink to={"/profile"}>
+                                    <NavLink to={`/profile/${u.id}`}>
                                         <img
                                             src={u.profile === null || u.profile.avatar === null ? avatar : u.profile.avatar}
                                             alt="avatar"/>

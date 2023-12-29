@@ -1,0 +1,19 @@
+.header span {
+    margin: auto 20px;
+}
+
+.header a {
+    color: black;
+    text-decoration: none;
+}
+
+.header {
+    grid-area: h;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header img {
+    width: 60px;
+}

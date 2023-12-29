@@ -3,10 +3,15 @@ import axios from "axios";
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import {setProfile} from "../../redux/profileReducer";
+import {withRouter} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        axios.get("https://back-end-for-social-network.vercel.app/profile/10").then(response => {
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = 10;
+        }
+        axios.get(`https://back-end-for-social-network.vercel.app/profile/${userId}`).then(response => {
             this.props.setProfile(response.data);
         })
     }
@@ -20,4 +25,6 @@ const mapStataToProps = (state) => {
     return {profile: state.profileReducer.profile};
 }
 
-export default connect(mapStataToProps, {setProfile})(ProfileContainer)
+const urlDateWithRouter = withRouter(ProfileContainer);
+
+export default connect(mapStataToProps, {setProfile})(urlDateWithRouter);
