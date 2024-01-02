@@ -3,6 +3,7 @@ import mod from "./Users.module.css"
 import avatar from "../../assets/images/images.png"
 import Preloader from "../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 const Users = (props) => {
     let arrayPages = [];
@@ -21,6 +22,7 @@ const Users = (props) => {
                                onClick={() => props.activePage(p)}>{p}</p>))
                     }
                 </div>
+
                 <div>
                     {props.users.map(u => (
                             <div key={u.id} className={mod.user}>
@@ -31,7 +33,21 @@ const Users = (props) => {
                                             alt="avatar"/>
                                     </NavLink>
                                     <button
-                                        onClick={() => u.follow ? props.unfollow(u.id) : props.follow(u.id)}>
+                                        onClick={() => {
+                                            if (u.follow) {
+                                                axios.delete(`http://localhost:3001/followers/${u.id}`, {withCredentials: true}).then(response => {
+                                                    if (response.status === 204) {
+                                                        props.unfollow(u.id);
+                                                    }
+                                                })
+                                            } else {
+                                                axios.post(`http://localhost:3001/followers/${u.id}`, {}, {withCredentials: true}).then(response => {
+                                                    if (response.status === 201) {
+                                                        props.follow(u.id)
+                                                    }
+                                                })
+                                            }
+                                        }}>
                                         {u.follow ? "Follow" : "Unfollow"}
                                     </button>
                                 </div>
