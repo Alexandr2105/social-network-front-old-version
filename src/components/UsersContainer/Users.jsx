@@ -4,6 +4,7 @@ import avatar from "../../assets/images/images.png"
 import Preloader from "../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
+import {settings} from "../../common/settings";
 
 const Users = (props) => {
     let arrayPages = [];
@@ -35,13 +36,13 @@ const Users = (props) => {
                                     <button
                                         onClick={() => {
                                             if (u.follow) {
-                                                axios.delete(`http://localhost:3001/followers/${u.id}`, {withCredentials: true}).then(response => {
+                                                axios.delete(`${settings.BACK_ADDRESS}/followers/${u.id}`, {withCredentials: true}).then(response => {
                                                     if (response.status === 204) {
                                                         props.unfollow(u.id);
                                                     }
                                                 })
                                             } else {
-                                                axios.post(`http://localhost:3001/followers/${u.id}`, {}, {withCredentials: true}).then(response => {
+                                                axios.post(`${settings.BACK_ADDRESS}/followers/${u.id}`, {}, {withCredentials: true}).then(response => {
                                                     if (response.status === 201) {
                                                         props.follow(u.id)
                                                     }

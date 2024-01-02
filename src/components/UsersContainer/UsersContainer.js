@@ -10,12 +10,13 @@ import {
 import React from "react";
 import axios from "axios";
 import Users from "./Users";
+import {settings} from "../../common/settings";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.setFetching(true);
-        axios.get(`https://back-end-for-social-network.vercel.app/users?pageNumber=${this.props.currentPage}`).then(response => {
+        axios.get(`${settings.BACK_ADDRESS}/users?pageNumber=${this.props.currentPage}`).then(response => {
             this.props.setFetching(false);
             this.props.setUsers(response.data.items);
             this.props.setPagesCount(response.data.pagesCount);
@@ -24,7 +25,7 @@ class UsersContainer extends React.Component {
 
     activePage = (p) => {
         this.props.setFetching(true);
-        axios.get(`https://back-end-for-social-network.vercel.app/users?pageNumber=${p}`).then(response => {
+        axios.get(`${settings.BACK_ADDRESS}/users?pageNumber=${p}`).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setFetching(false);
         })

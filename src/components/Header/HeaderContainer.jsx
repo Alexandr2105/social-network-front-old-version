@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import {setAuthState} from "../../redux/loginReducer";
 import axios from "axios";
 import Header from "./Header";
+import {settings} from "../../common/settings";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        axios.get("http://localhost:3001/auth/me", {withCredentials: true}).then(response => {
+        axios.get(`${settings.BACK_ADDRESS}/auth/me`, {withCredentials: true}).then(response => {
             const {id, fullName, email} = response.data;
             if (response.status === 200) {
                 this.props.setAuthState(id, fullName, email);

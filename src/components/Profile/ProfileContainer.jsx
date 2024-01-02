@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import Profile from "./Profile";
 import {setProfile} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
+import {settings} from "../../common/settings";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -11,7 +12,7 @@ class ProfileContainer extends React.Component {
         if (!userId) {
             userId = 10;
         }
-        axios.get(`https://back-end-for-social-network.vercel.app/profile/${userId}`).then(response => {
+        axios.get(`${settings.BACK_ADDRESS}/profile/${userId}`).then(response => {
             this.props.setProfile(response.data);
         })
     }
