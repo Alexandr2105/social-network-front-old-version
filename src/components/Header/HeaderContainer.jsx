@@ -7,8 +7,6 @@ import {settings} from "../../common/settings";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        console.log(settings.BACK_ADDRESS)
-        console.log(process.env.REACT_APP_ADDRESS)
         axios.get(`${settings.BACK_ADDRESS}/auth/me`, {withCredentials: true}).then(response => {
             const {id, fullName, email} = response.data;
             if (response.status === 200) {

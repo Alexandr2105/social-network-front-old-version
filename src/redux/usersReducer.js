@@ -15,7 +15,6 @@ const IS_FETCHING = "IS_FETCHING";
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW_ON:
-            console.log(state);
             return {
                 ...state, users: state.users.map(u => u.id === action.userId ? {...u, follow: true} : u)
             }
