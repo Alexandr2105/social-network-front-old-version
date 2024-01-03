@@ -9,7 +9,6 @@ class HeaderContainer extends React.Component {
         authAPI.getMeInformation().then(response=>{
             const {id, fullName, email} = response.data;
             if (response.status === 200) {
-                debugger
                 this.props.setAuthState(id, fullName, email);
             }
         })
