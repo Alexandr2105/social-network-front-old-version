@@ -3,8 +3,7 @@ import mod from "./Users.module.css"
 import avatar from "../../assets/images/images.png"
 import Preloader from "../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {settings} from "../../common/settings";
+import {followerAPI} from "../../api/api";
 
 const Users = (props) => {
     let arrayPages = [];
@@ -36,14 +35,14 @@ const Users = (props) => {
                                     <button
                                         onClick={() => {
                                             if (u.follow) {
-                                                axios.delete(`${settings.BACK_ADDRESS}/followers/${u.id}`, {withCredentials: true}).then(response => {
-                                                    if (response.status === 204) {
+                                                followerAPI.deleteFollowers(u.id).then(data => {
+                                                    if (data.status === 204) {
                                                         props.unfollow(u.id);
                                                     }
                                                 })
                                             } else {
-                                                axios.post(`${settings.BACK_ADDRESS}/followers/${u.id}`, {}, {withCredentials: true}).then(response => {
-                                                    if (response.status === 201) {
+                                                followerAPI.createFollowers(u.id).then(data => {
+                                                    if (data.status === 201) {
                                                         props.follow(u.id)
                                                     }
                                                 })

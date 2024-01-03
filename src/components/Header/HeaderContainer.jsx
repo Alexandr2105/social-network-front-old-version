@@ -1,18 +1,18 @@
 import React from "react";
 import {connect} from "react-redux";
 import {setAuthState} from "../../redux/loginReducer";
-import axios from "axios";
 import Header from "./Header";
-import {settings} from "../../common/settings";
+import {authAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        axios.get(`${settings.BACK_ADDRESS}/auth/me`, {withCredentials: true}).then(response => {
+        authAPI.getMeInformation().then(response=>{
             const {id, fullName, email} = response.data;
             if (response.status === 200) {
+                debugger
                 this.props.setAuthState(id, fullName, email);
             }
-        });
+        })
     }
 
     // componentDidMount() {

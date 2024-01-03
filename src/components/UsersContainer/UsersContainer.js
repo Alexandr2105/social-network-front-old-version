@@ -1,32 +1,24 @@
 import {connect} from "react-redux";
-import {
-    follow,
-    setCurrentPage,
-    setFetching,
-    setPagesCount,
-    setUsers,
-    unfollow
-} from "../../redux/usersReducer";
+import {follow, setCurrentPage, setFetching, setPagesCount, setUsers, unfollow} from "../../redux/usersReducer";
 import React from "react";
-import axios from "axios";
 import Users from "./Users";
-import {settings} from "../../common/settings";
+import {usersAPI} from "../../api/api";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.setFetching(true);
-        axios.get(`${settings.BACK_ADDRESS}/users?pageNumber=${this.props.currentPage}`).then(response => {
+        usersAPI.getUsers(this.props.currentPage).then(data => {
             this.props.setFetching(false);
-            this.props.setUsers(response.data.items);
-            this.props.setPagesCount(response.data.pagesCount);
+            this.props.setUsers(data.items);
+            this.props.setPagesCount(data.pagesCount);
         })
     }
 
     activePage = (p) => {
         this.props.setFetching(true);
-        axios.get(`${settings.BACK_ADDRESS}/users?pageNumber=${p}`).then(response => {
-            this.props.setUsers(response.data.items);
+        usersAPI.getUsers(p).then(data=>{
+            this.props.setUsers(data.items);
             this.props.setFetching(false);
         })
         this.props.setCurrentPage(p);
