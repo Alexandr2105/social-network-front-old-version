@@ -33,17 +33,21 @@ const Users = (props) => {
                                             alt="avatar"/>
                                     </NavLink>
                                     <button
+                                        disabled={props.isClickButton.find(element => element === u.id)}
                                         onClick={() => {
+                                            props.setClickButton(u.id, true);
                                             if (u.follow) {
-                                                followerAPI.deleteFollowers(u.id).then(data => {
-                                                    if (data.status === 204) {
+                                                followerAPI.deleteFollowers(u.id).then(status => {
+                                                    if (status === 204) {
                                                         props.unfollow(u.id);
+                                                        props.setClickButton(u.id, false);
                                                     }
                                                 })
                                             } else {
-                                                followerAPI.createFollowers(u.id).then(data => {
-                                                    if (data.status === 201) {
-                                                        props.follow(u.id)
+                                                followerAPI.createFollowers(u.id).then(status => {
+                                                    if (status === 201) {
+                                                        props.follow(u.id);
+                                                        props.setClickButton(u.id, false);
                                                     }
                                                 })
                                             }

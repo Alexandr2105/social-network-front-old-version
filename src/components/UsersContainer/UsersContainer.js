@@ -1,5 +1,13 @@
 import {connect} from "react-redux";
-import {follow, setCurrentPage, setFetching, setPagesCount, setUsers, unfollow} from "../../redux/usersReducer";
+import {
+    follow,
+    setClickButton,
+    setCurrentPage,
+    setFetching,
+    setPagesCount,
+    setUsers,
+    unfollow
+} from "../../redux/usersReducer";
 import React from "react";
 import Users from "./Users";
 import {usersAPI} from "../../api/api";
@@ -17,7 +25,7 @@ class UsersContainer extends React.Component {
 
     activePage = (p) => {
         this.props.setFetching(true);
-        usersAPI.getUsers(p).then(data=>{
+        usersAPI.getUsers(p).then(data => {
             this.props.setUsers(data.items);
             this.props.setFetching(false);
         })
@@ -27,7 +35,8 @@ class UsersContainer extends React.Component {
     render() {
         return <Users pagesCount={this.props.pagesCount} currentPage={this.props.currentPage} users={this.props.users}
                       activePage={this.activePage} unfollow={this.props.unfollow} follow={this.props.follow}
-                      isFetching={this.props.isFetching}/>
+                      isFetching={this.props.isFetching} isClickButton={this.props.isClickButton}
+                      setClickButton={this.props.setClickButton}/>
     }
 }
 
@@ -37,9 +46,10 @@ const mapStateToPops = (state) => {
         pagesCount: state.usersReducer.pagesCount,
         currentPage: state.usersReducer.currentPage,
         isFetching: state.usersReducer.isFetching,
+        isClickButton: state.usersReducer.isClickButton,
     }
 }
 
 export default connect(mapStateToPops, {
-    follow, unfollow, setUsers, setPagesCount, setCurrentPage, setFetching
+    follow, unfollow, setUsers, setPagesCount, setCurrentPage, setFetching, setClickButton
 })(UsersContainer);

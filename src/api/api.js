@@ -11,21 +11,11 @@ export const usersAPI = {
 
 export const followerAPI = {
     createFollowers(userId) {
-        return instance.post(`/followers/${userId}`).then(response => {
-            return {
-                data: response.data,
-                status: response.status,
-            }
-        })
+        return instance.post(`/followers/${userId}`).then(response => response.status)
     },
 
     deleteFollowers(userId) {
-        return instance.delete(`/followers/${userId}`).then(response => {
-            return {
-                data: response.data,
-                status: response.status,
-            }
-        })
+        return instance.delete(`/followers/${userId}`).then(response => response.status)
     }
 }
 
