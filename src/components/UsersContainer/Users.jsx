@@ -40,16 +40,16 @@ const Users = (props) => {
                                                 followerAPI.deleteFollowers(u.id).then(status => {
                                                     if (status === 204) {
                                                         props.unfollow(u.id);
-                                                        props.setClickButton(u.id, false);
                                                     }
+                                                    props.setClickButton(u.id, false);
                                                 })
                                             } else {
                                                 followerAPI.createFollowers(u.id).then(status => {
                                                     if (status === 201) {
                                                         props.follow(u.id);
-                                                        props.setClickButton(u.id, false);
                                                     }
-                                                })
+                                                    props.setClickButton(u.id, false);
+                                                }).finally(props.setClickButton(u.id, false))
                                             }
                                         }}>
                                         {u.follow ? "Follow" : "Unfollow"}
