@@ -1,28 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setAuthState} from "../../redux/loginReducer";
 import Header from "./Header";
-import {authAPI} from "../../api/api";
+import {getUserInformation} from "../../redux/loginReducer";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        authAPI.getMeInformation().then(response => {
-            const {id, fullName, email} = response.data;
-            if (response.status === 200) {
-                this.props.setAuthState(id, fullName, email);
-            }
-        })
+        this.props.getUserInformation();
     }
-
-    // componentDidMount() {
-    //     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJpYXQiOjE3MDM4NTEwODIsImV4cCI6MTcwMzg1Mjg4Mn0.NurvLFtlvQ656AvRvVumbUh034lZPqthMijbjh3IvQw"
-    //     axios.get("http://localhost:3001/auth/me", {headers: {Authorization: `Bearer ${token}`}}).then(response => {
-    //         const {id, fullName, email} = response.data;
-    //         if(response.status===200){
-    //             this.props.setAuthState(id, fullName, email);
-    //         }
-    //     });
-    // }
 
     render() {
         return <Header isAuth={this.props.isAuth} fullName={this.props.fullName}/>
@@ -38,4 +22,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setAuthState})(HeaderContainer);
+export default connect(mapStateToProps, {getUserInformation})(HeaderContainer);

@@ -10,7 +10,7 @@ class UsersContainer extends React.Component {
     }
 
     activePage = (p) => {
-        this.props.getUser(p);
+        this.props.getUsers(p);
     }
 
     render() {

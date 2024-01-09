@@ -1,3 +1,5 @@
+import {authAPI} from "../api/api";
+
 const initialState = {
     id: null,
     fullName: null,
@@ -17,6 +19,17 @@ const loginReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthState = (userId, fullName, email) => ({type: SET_AUTH_STATE, userId, fullName, email})
+export const setAuthState = (userId, fullName, email) => ({type: SET_AUTH_STATE, userId, fullName, email});
+
+export const getUserInformation = () => {
+    return (dispatch) => {
+        authAPI.getMeInformation().then(response => {
+            const {id, fullName, email} = response.data;
+            if (response.status === 200) {
+                dispatch(setAuthState(id, fullName, email));
+            }
+        })
+    }
+}
 
 export default loginReducer;
