@@ -58,7 +58,7 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setFetching = (status) => ({type: IS_FETCHING, status});
 export const setClickButton = (id, status) => ({type: IS_CLICK_BUTTON, id, status});
 
-export const getUser = (currentPage) => {
+export const getUsers = (currentPage) => {
     return (dispatch) => {
         dispatch(setFetching(true));
         usersAPI.getUsers(currentPage).then(data => {

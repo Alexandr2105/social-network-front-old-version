@@ -1,12 +1,12 @@
 import {connect} from "react-redux";
-import {followOrUnfollowShowStatus, getUser, setClickButton} from "../../redux/usersReducer";
+import {followOrUnfollowShowStatus, getUsers, setClickButton} from "../../redux/usersReducer";
 import React from "react";
 import Users from "./Users";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUser(this.props.currentPage);
+        this.props.getUsers(this.props.currentPage);
     }
 
     activePage = (p) => {
@@ -32,5 +32,5 @@ const mapStateToPops = (state) => {
 }
 
 export default connect(mapStateToPops, {
-    setClickButton, getUser, followOrUnfollowShowStatus,
+    setClickButton, getUsers, followOrUnfollowShowStatus,
 })(UsersContainer);
