@@ -1,3 +1,5 @@
+import {followerAPI, usersAPI} from "../api/api";
+
 const initialState = {
     users: [],
     pagesCount: 0,
@@ -40,7 +42,7 @@ const usersReducer = (state = initialState, action) => {
         case IS_CLICK_BUTTON: {
             return {
                 ...state,
-                isClickButton: action.status ? [...state.isClickButton, action.id] : [state.isClickButton.filter(element => element !== action.id)]
+                isClickButton: action.status ? [...state.isClickButton, action.id] : state.isClickButton.filter(element => element !== action.id)
             }
         }
         default:
@@ -55,5 +57,43 @@ export const setPagesCount = (pagesCount) => ({type: SET_PAGES_COUNT, pagesCount
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setFetching = (status) => ({type: IS_FETCHING, status});
 export const setClickButton = (id, status) => ({type: IS_CLICK_BUTTON, id, status});
+
+export const getUser = (currentPage) => {
+    return (dispatch) => {
+        dispatch(setFetching(true));
+        usersAPI.getUsers(currentPage).then(data => {
+            dispatch(setFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setPagesCount(data.pagesCount));
+            dispatch(setCurrentPage(currentPage));
+        });
+    }
+}
+
+export const followOrUnfollowShowStatus = (userId, userStatus) => {
+    return (dispatch) => {
+        dispatch(setClickButton(userId, true));
+        let followPromise;
+
+        if (userStatus) {
+            followPromise = followerAPI.deleteFollowers(userId);
+        } else {
+            followPromise = followerAPI.createFollowers(userId);
+        }
+
+        followPromise
+            .then(status => {
+                if (status === 204 && userStatus) {
+                    dispatch(unfollow(userId));
+                } else if (status === 201 && !userStatus) {
+                    dispatch(follow(userId));
+                }
+            })
+            .finally(() => {
+                dispatch(setClickButton(userId, false));
+            });
+    }
+}
+
 
 export default usersReducer;

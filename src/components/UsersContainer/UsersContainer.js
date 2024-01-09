@@ -1,42 +1,23 @@
 import {connect} from "react-redux";
-import {
-    follow,
-    setClickButton,
-    setCurrentPage,
-    setFetching,
-    setPagesCount,
-    setUsers,
-    unfollow
-} from "../../redux/usersReducer";
+import {followOrUnfollowShowStatus, getUser, setClickButton} from "../../redux/usersReducer";
 import React from "react";
 import Users from "./Users";
-import {usersAPI} from "../../api/api";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setFetching(true);
-        usersAPI.getUsers(this.props.currentPage).then(data => {
-            this.props.setFetching(false);
-            this.props.setUsers(data.items);
-            this.props.setPagesCount(data.pagesCount);
-        })
+        this.props.getUser(this.props.currentPage);
     }
 
     activePage = (p) => {
-        this.props.setFetching(true);
-        usersAPI.getUsers(p).then(data => {
-            this.props.setUsers(data.items);
-            this.props.setFetching(false);
-        })
-        this.props.setCurrentPage(p);
+        this.props.getUser(p);
     }
 
     render() {
         return <Users pagesCount={this.props.pagesCount} currentPage={this.props.currentPage} users={this.props.users}
-                      activePage={this.activePage} unfollow={this.props.unfollow} follow={this.props.follow}
-                      isFetching={this.props.isFetching} isClickButton={this.props.isClickButton}
-                      setClickButton={this.props.setClickButton}/>
+                      activePage={this.activePage} isClickButton={this.props.isClickButton}
+                      setClickButton={this.props.setClickButton} isFetching={this.props.isFetching}
+                      followOrUnfollowShowStatus={this.props.followOrUnfollowShowStatus}/>
     }
 }
 
@@ -51,5 +32,5 @@ const mapStateToPops = (state) => {
 }
 
 export default connect(mapStateToPops, {
-    follow, unfollow, setUsers, setPagesCount, setCurrentPage, setFetching, setClickButton
+    setClickButton, getUser, followOrUnfollowShowStatus,
 })(UsersContainer);

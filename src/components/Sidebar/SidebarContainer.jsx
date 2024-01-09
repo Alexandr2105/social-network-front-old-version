@@ -1,12 +1,17 @@
 import Sidebar from "./Sidebar";
 import {connect} from "react-redux";
+import React from "react";
 
-const mapStateToProps = (state) => {
-    return {
-        sidebar:state.sidebarReducer.sidebar,
+export class SidebarContainer extends React.Component {
+    render() {
+        return <Sidebar sidebar={this.props.sidebar}/>
     }
 }
 
-const SidebarContainer = connect(mapStateToProps)(Sidebar);
+const mapStateToProps = (state) => {
+    return {
+        sidebar: state.sidebarReducer.sidebar,
+    }
+}
 
-export default SidebarContainer;
+export default connect(mapStateToProps)(SidebarContainer);

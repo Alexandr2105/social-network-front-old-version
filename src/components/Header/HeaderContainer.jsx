@@ -6,7 +6,7 @@ import {authAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        authAPI.getMeInformation().then(response=>{
+        authAPI.getMeInformation().then(response => {
             const {id, fullName, email} = response.data;
             if (response.status === 200) {
                 this.props.setAuthState(id, fullName, email);
@@ -25,7 +25,7 @@ class HeaderContainer extends React.Component {
     // }
 
     render() {
-        return <Header {...this.props}/>
+        return <Header isAuth={this.props.isAuth} fullName={this.props.fullName}/>
     }
 }
 

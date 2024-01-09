@@ -8,16 +8,6 @@ const Messages = (props) => {
     const message = props.messages.map(m => <Message key={m.id} message={m.message}/>);
     const people = props.dialogs.map(d => <People key={d.id} id={d.id.toString()} name={d.name}
                                                   avatar={d.avatar}/>)
-
-    const onChange = (e) => {
-        const text = e.target.value;
-        props.updateMessage(text);
-    }
-
-    const createPost = () => {
-        props.createMessage();
-    }
-
     return (
         <div>
             <div className={mod.dialogs}>
@@ -27,9 +17,9 @@ const Messages = (props) => {
                 <div>
                     <div>{message}</div>
                     <div>
-                        <textarea onChange={onChange} placeholder="Введите текст"
+                        <textarea onChange={props.onChangeMessage} placeholder="Введите текст"
                                   value={props.updateNewMessage}/>
-                        <button onClick={createPost}>Send</button>
+                        <button onClick={props.createMessage}>Send</button>
                     </div>
                 </div>
             </div>

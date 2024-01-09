@@ -3,7 +3,6 @@ import mod from "./Users.module.css"
 import avatar from "../../assets/images/images.png"
 import Preloader from "../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import {followerAPI} from "../../api/api";
 
 const Users = (props) => {
     let arrayPages = [];
@@ -13,7 +12,7 @@ const Users = (props) => {
 
     return (
         <>
-            {props.isFetching ? <Preloader/> : null}
+        {props.isFetching ? <Preloader/> : null}
             <div>
                 <div className={mod.pages}>
                     {
@@ -33,25 +32,10 @@ const Users = (props) => {
                                             alt="avatar"/>
                                     </NavLink>
                                     <button
-                                        disabled={props.isClickButton.find(element => element === u.id)}
-                                        onClick={() => {
-                                            props.setClickButton(u.id, true);
-                                            if (u.follow) {
-                                                followerAPI.deleteFollowers(u.id).then(status => {
-                                                    if (status === 204) {
-                                                        props.unfollow(u.id);
-                                                    }
-                                                    props.setClickButton(u.id, false);
-                                                })
-                                            } else {
-                                                followerAPI.createFollowers(u.id).then(status => {
-                                                    if (status === 201) {
-                                                        props.follow(u.id);
-                                                    }
-                                                    props.setClickButton(u.id, false);
-                                                }).finally(props.setClickButton(u.id, false))
-                                            }
-                                        }}>
+                                        disabled={props.isClickButton.includes(u.id)}
+                                        onClick={() =>
+                                            props.followOrUnfollowShowStatus(u.id, u.follow)
+                                        }>
                                         {u.follow ? "Follow" : "Unfollow"}
                                     </button>
                                 </div>
