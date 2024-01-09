@@ -1,4 +1,4 @@
-import mod from "../../components/UsersContainer/Users.module.css";
+import mod from "../../components/Users/Users.module.css";
 import React from "react";
 import preloader from "../../assets/images/gear-spinner.svg"
 

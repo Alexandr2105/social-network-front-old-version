@@ -8,7 +8,7 @@ import Musics from "./components/Musics/Musics";
 import MessagesContainer from "./components/Dialogs/MessagesContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
-import UsersContainer from "./components/UsersContainer/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 
