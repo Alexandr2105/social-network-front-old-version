@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getProfileForCurrentUser, setProfile} from "../../redux/profileReducer";
+import {getProfileForCurrentUser} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
@@ -21,4 +21,4 @@ const mapStataToProps = (state) => {
 
 const urlDateWithRouter = withRouter(ProfileContainer);
 
-export default connect(mapStataToProps, {setProfile, getProfileForCurrentUser})(urlDateWithRouter);
+export default connect(mapStataToProps, {getProfileForCurrentUser})(urlDateWithRouter);
