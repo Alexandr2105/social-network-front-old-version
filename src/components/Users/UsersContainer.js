@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import {followOrUnfollowShowStatus, getUsers, setClickButton} from "../../redux/usersReducer";
 import React from "react";
 import Users from "./Users";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
@@ -31,6 +32,6 @@ const mapStateToPops = (state) => {
     }
 }
 
-export default connect(mapStateToPops, {
+export default compose(connect(mapStateToPops, {
     setClickButton, getUsers, followOrUnfollowShowStatus,
-})(UsersContainer);
+}))(UsersContainer);

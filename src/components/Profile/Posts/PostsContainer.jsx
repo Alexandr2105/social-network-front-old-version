@@ -2,6 +2,7 @@ import {createPost, onChangePost} from "../../../redux/profileReducer";
 import Posts from "./Posts";
 import {connect} from "react-redux";
 import React from "react";
+import {compose} from "redux";
 
 export class PostsContainer extends React.Component {
     render() {
@@ -18,4 +19,4 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps, {onChangePost, createPost})(PostsContainer)
+export default compose(connect(mapStateToProps, {onChangePost, createPost}))(PostsContainer);
