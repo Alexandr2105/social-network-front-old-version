@@ -81,8 +81,8 @@ export const createPost = () => {
 
 export const saveStatus = (status) => {
     return (dispatch) => {
-        profileAPI.updateProfileStatus(status).then(data => {
-            if (data.status === 201) dispatch(saveProfileStatus(data))
+        profileAPI.updateProfileStatus(status).then(response => {
+            if (response.status === 201) dispatch(saveProfileStatus(response.data))
         });
     }
 }
