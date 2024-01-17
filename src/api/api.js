@@ -5,7 +5,7 @@ const instance = axios.create({withCredentials: true, baseURL: settings.BACK_ADD
 
 export const usersAPI = {
     getUsers(pageNumber) {
-        return instance.get(`/users?pageNumber=${pageNumber}`).then(response => response.data)
+        return instance.get(`/users?pageNumber=${pageNumber}`)
     }
 }
 
@@ -28,12 +28,15 @@ export const authAPI = {
                 }
             }
         )
+    },
+    login(email, password) {
+        return instance.post('auth/login', {email, password})
     }
 }
 
 export const profileAPI = {
     getProfileForCurrentUser(userId) {
-        return instance.get(`/profile/${userId}`).then(response => response.data)
+        return instance.get(`/profile/${userId}`)
     },
 
     updateProfileStatus(status) {

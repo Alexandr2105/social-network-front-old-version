@@ -61,10 +61,10 @@ export const setClickButton = (id, status) => ({type: IS_CLICK_BUTTON, id, statu
 export const getUsers = (currentPage) => {
     return (dispatch) => {
         dispatch(setFetching(true));
-        usersAPI.getUsers(currentPage).then(data => {
+        usersAPI.getUsers(currentPage).then(response => {
             dispatch(setFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setPagesCount(data.pagesCount));
+            dispatch(setUsers(response.data.items));
+            dispatch(setPagesCount(response.data.pagesCount));
             dispatch(setCurrentPage(currentPage));
         });
     }

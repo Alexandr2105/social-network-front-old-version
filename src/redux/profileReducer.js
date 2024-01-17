@@ -60,8 +60,8 @@ export const getProfileForCurrentUser = (userId) => {
         if (!userId) {
             userId = 11;
         }
-        profileAPI.getProfileForCurrentUser(userId).then(data => {
-            dispatch(setProfile(data));
+        profileAPI.getProfileForCurrentUser(userId).then(response => {
+            dispatch(setProfile(response.data));
         })
     }
 }
