@@ -33,42 +33,28 @@ const initialState = {
             message: "Good bye!"
         }
     ],
-    updateNewMessage: "",
 };
 
-
 const ADD_MESSAGE_ACTION_TYPE = "ADD_MESSAGE_ACTION_TYPE";
-const UPDATE_TEXT_NEW_MESSAGE_ACTION_TYPE = "UPDATE_TEXT_NEW_MESSAGE_ACTION_TYPE";
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE_ACTION_TYPE:
             const newMessage = {
                 id: 4,
-                message: state.updateNewMessage,
+                message: action.message,
             }
-            return {...state, messages: [...state.messages, newMessage], updateNewMessage: ""}
-        case UPDATE_TEXT_NEW_MESSAGE_ACTION_TYPE: {
-            return {...state, updateNewMessage: action.newText};
-        }
+            return {...state, messages: [...state.messages, newMessage]}
         default :
             return state;
     }
 }
 
-const addMessageActionCreator = () => ({type: ADD_MESSAGE_ACTION_TYPE});
-const updateTextNewMessageActionCreator = (text) => ({type: UPDATE_TEXT_NEW_MESSAGE_ACTION_TYPE, newText: text});
+const addMessageActionCreator = (message) => ({type: ADD_MESSAGE_ACTION_TYPE, message});
 
-export const onChangeMessage = (e) => {
+export const createMessage = (message) => {
     return (dispatch) => {
-        const text = e.target.value;
-        dispatch(updateTextNewMessageActionCreator(text));
-    }
-}
-
-export const createMessage = () => {
-    return (dispatch)=>{
-        dispatch(addMessageActionCreator());
+        dispatch(addMessageActionCreator(message));
     }
 }
 

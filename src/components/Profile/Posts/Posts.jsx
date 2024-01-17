@@ -1,17 +1,23 @@
 import React from "react";
 import Post from "./Post/Post";
 import mod from "./Posts.module.css"
+import {reduxForm} from "redux-form";
+import UniversalForm from "../../../common/UniversalForm/UniversalForm";
 
 const Posts = (props) => {
     const posts = props.posts.map(p => (<Post key={p.id} message={p.message} likes={p.likes}/>))
+    const form = (data) => {
+        props.createPost(data.message);
+    }
 
     return (
         <div className={mod.textArea}>
-            <textarea onChange={props.onChangePost} placeholder="Введите текст" value={props.updateNewPost}/>
-            <button onClick={props.createPost}>Send</button>
+            <CreatePostsReducerForm onSubmit={form}/>
             {posts}
         </div>
     )
 }
+
+const CreatePostsReducerForm = reduxForm({form: "createPost"})(UniversalForm)
 
 export default Posts;

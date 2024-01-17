@@ -16,13 +16,11 @@ const initialState = {
             likes: 99
         }
     ],
-    updateNewPost: "",
     profile: null,
 };
 
 
 const ADD_POST_ACTION_TYPE = "ADD_POST_ACTION_TYPE";
-const UPDATE_TEXT_NEW_POST_ACTION_TYPE = "UPDATE_TEXT_NEW_POST_ACTION_TYPE";
 const UPDATE_PROFILE_ACTION_TYPE = "UPDATE_PROFILE_ACTION_TYPE";
 const SAVE_PROFILE_STATUS_TYPE = "SAVE_PROFILE_STATUS";
 
@@ -31,13 +29,10 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST_ACTION_TYPE: {
             const newPost = {
                 id: 4,
-                message: state.updateNewPost,
+                message: action.post,
                 likes: 0
             }
-            return {...state, posts: [...state.posts, newPost], updateNewPost: ""};
-        }
-        case UPDATE_TEXT_NEW_POST_ACTION_TYPE: {
-            return {...state, updateNewPost: action.newText}
+            return {...state, posts: [...state.posts, newPost]};
         }
         case UPDATE_PROFILE_ACTION_TYPE: {
             return {...state, profile: action.profile}
@@ -50,8 +45,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST_ACTION_TYPE});
-export const updateTextNewPostActionCreator = (text) => ({type: UPDATE_TEXT_NEW_POST_ACTION_TYPE, newText: text});
+export const addPostActionCreator = (post) => ({type: ADD_POST_ACTION_TYPE, post});
 export const setProfile = (profile) => ({type: UPDATE_PROFILE_ACTION_TYPE, profile: profile});
 export const saveProfileStatus = (profile) => ({type: SAVE_PROFILE_STATUS_TYPE, profile: profile});
 
@@ -66,16 +60,9 @@ export const getProfileForCurrentUser = (userId) => {
     }
 }
 
-export const onChangePost = (e) => {
+export const createPost = (post) => {
     return (dispatch) => {
-        const text = e.target.value;
-        dispatch(updateTextNewPostActionCreator(text));
-    }
-}
-
-export const createPost = () => {
-    return (dispatch) => {
-        dispatch(addPostActionCreator());
+        dispatch(addPostActionCreator(post));
     }
 }
 
