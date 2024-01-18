@@ -2,8 +2,7 @@ import React from "react";
 import Message from "./Message/Message";
 import People from "./People/People";
 import mod from "./Messges.module.css"
-import {reduxForm} from "redux-form";
-import UniversalForm from "../../common/UniversalForm/UniversalForm";
+import AddMessageForm from "./MesageForm/MessageForm";
 
 const Messages = (props) => {
     const form = (data) => {
@@ -21,13 +20,11 @@ const Messages = (props) => {
                 </div>
                 <div>
                     <div>{message}</div>
-                    <SendMessageReducerForm onSubmit={form}/>
+                    <AddMessageForm onSubmit={form}/>
                 </div>
             </div>
         </div>
     )
 }
-
-const SendMessageReducerForm = reduxForm({form: "sendMessage"})(UniversalForm);
 
 export default Messages;

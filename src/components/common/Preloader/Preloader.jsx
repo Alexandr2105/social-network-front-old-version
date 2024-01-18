@@ -1,6 +1,6 @@
-import mod from "../../components/Users/Users.module.css";
+import mod from "../../Users/Users.module.css";
 import React from "react";
-import preloader from "../../assets/images/gear-spinner.svg"
+import preloader from "../../../assets/images/gear-spinner.svg"
 
 const Preloader = () => {
     return (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {settings} from "../common/settings";
+import {settings} from "../utils/settings";
 
 const instance = axios.create({withCredentials: true, baseURL: settings.BACK_ADDRESS})
 

@@ -1,7 +1,7 @@
 import React from "react";
 import mod from "./Profile.module.css"
 import PostsContainer from "./Posts/PostsContainer";
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 import ProfileStatusContainer from "./ProfileStatus/ProfileStatus.Container";
 
 const Profile = (props) => {
