@@ -2,7 +2,6 @@ export const required = (value) => {
     if (value) {
         return undefined;
     } else {
-        console.log("value " + value)
         return "Field is required";
     }
 }
