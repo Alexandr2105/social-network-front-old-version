@@ -5,7 +5,7 @@ import {Textarea} from "../../common/FormsControl/FormsControl";
 
 const maxLength100 = checkMaxLength(100);
 
-const addPostForm = (props) => {
+const PostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <Field name="post" validate={[required, maxLength100]} component={Textarea}
@@ -15,4 +15,4 @@ const addPostForm = (props) => {
     )
 }
 
-export default reduxForm({form: "textsForm"})(addPostForm);
+export default reduxForm({form: "textsForm"})(PostForm);

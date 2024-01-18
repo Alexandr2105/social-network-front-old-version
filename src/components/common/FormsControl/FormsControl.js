@@ -1,7 +1,7 @@
 import React from "react";
 import mod from "./FormsControl.module.css"
 
-export const FormsControl = ({meta, children}) => {
+const FormsControl = ({meta, children}) => {
     const data = meta.touched && meta.error;
 
     return (
