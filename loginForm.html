@@ -1,60 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <style>
-        /* Стили формы (как в предыдущем примере) */
-    </style>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Login Form</title>-->
+<!--    <style>-->
+<!--        /* Стили формы (как в предыдущем примере) */-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
 
-<form id="loginForm">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+<!--<form id="loginForm">-->
+<!--    <label for="email">Email:</label>-->
+<!--    <input type="email" id="email" name="email" required>-->
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+<!--    <label for="password">Password:</label>-->
+<!--    <input type="password" id="password" name="password" required>-->
 
-    <button type="button" onclick="login()">Login</button>
-</form>
+<!--    <button type="button" onclick="login()">Login</button>-->
+<!--</form>-->
 
-<script>
-    async function login() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+<!--<script>-->
+<!--    async function login() {-->
+<!--        var email = document.getElementById("email").value;-->
+<!--        var password = document.getElementById("password").value;-->
 
-        if (email === "" || password === "") {
-            alert("Please enter email and password.");
-            return;
-        }
+<!--        if (email === "" || password === "") {-->
+<!--            alert("Please enter email and password.");-->
+<!--            return;-->
+<!--        }-->
 
-        try {
-            const response = await fetch("https://back-end-for-social-network.vercel.app/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: 'include',
-                body: JSON.stringify({email, password}),
-            });
+<!--        try {-->
+<!--            const response = await fetch("https://back-end-for-social-network.vercel.app/auth/login", {-->
+<!--                method: "POST",-->
+<!--                headers: {-->
+<!--                    "Content-Type": "application/json",-->
+<!--                },-->
+<!--                credentials: 'include',-->
+<!--                body: JSON.stringify({email, password}),-->
+<!--            });-->
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data); // Выводим данные, полученные от сервера
-                alert("Login successful!");
-            } else {
-                const errorData = await response.json();
-                console.error(errorData); // Выводим данные об ошибке
-                alert("Invalid email or password. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("An error occurred. Please try again later.");
-        }
-    }
-</script>
+<!--            if (response.ok) {-->
+<!--                const data = await response.json();-->
+<!--                console.log(data); // Выводим данные, полученные от сервера-->
+<!--                alert("Login successful!");-->
+<!--            } else {-->
+<!--                const errorData = await response.json();-->
+<!--                console.error(errorData); // Выводим данные об ошибке-->
+<!--                alert("Invalid email or password. Please try again.");-->
+<!--            }-->
+<!--        } catch (error) {-->
+<!--            console.error("Error:", error);-->
+<!--            alert("An error occurred. Please try again later.");-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

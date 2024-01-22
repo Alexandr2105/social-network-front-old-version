@@ -29,14 +29,19 @@ export const authAPI = {
             }
         )
     },
+
     login(email, password) {
-        return instance.post('auth/login', {email, password})
+        return instance.post("auth/login", {email, password});
+    },
+
+    logout() {
+        return instance.delete("auth/logout");
     }
 }
 
 export const profileAPI = {
     getProfileForCurrentUser(userId) {
-        return instance.get(`/profile/${userId}`)
+        return instance.get(`/profile/${userId}`);
     },
 
     updateProfileStatus(status) {
