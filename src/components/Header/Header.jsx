@@ -11,7 +11,7 @@ const Header = (props) => {
                 <span>{props.isAuth ? props.fullName : <NavLink to={"/login"}>
                     <button>Login</button>
                 </NavLink>}</span>
-                {props.isAuth && <button onClick={props.logout()}>Log out</button>}
+                {props.isAuth && <button onClick={props.logout}>Log out</button>}
             </div>
         </header>)
 }
