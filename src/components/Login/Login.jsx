@@ -1,6 +1,6 @@
 import React from "react";
-import {LoginReducerForm} from "./LoginForm/LoginForm";
 import {Redirect} from "react-router-dom";
+import LoginFormContainer from "./LoginForm/LoginFormContainer";
 
 const Login = (props) => {
     if (props.isAuth) {
@@ -10,7 +10,7 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReducerForm onSubmit={props.onSubmit}/>
+            <LoginFormContainer onSubmit={props.onSubmit}/>
         </div>);
 }
 export default Login;
