@@ -1,4 +1,5 @@
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const initialState = {
     id: null,
@@ -29,11 +30,12 @@ export const setAuthState = (userId, fullName, email, isAuth) => ({
 
 export const getUserInformation = () => {
     return (dispatch) => {
-        authAPI.getMeInformation().then(response => {
+        return authAPI.getMeInformation().then(response => {
             const {id, fullName, email} = response.data;
             if (response.status === 200) {
                 dispatch(setAuthState(id, fullName, email, true));
             }
+        }).catch(() => {
         })
     }
 }
@@ -43,7 +45,9 @@ export const login = (data) => (dispatch) => {
         if (response.status === 201) {
             dispatch(getUserInformation());
         }
-    });
+    }).catch(() => {
+        dispatch(stopSubmit("login", {_error: "Incorrect Email or Password"}));
+    })
 }
 
 export const logout = () => (dispatch) => {

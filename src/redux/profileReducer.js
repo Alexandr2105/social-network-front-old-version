@@ -51,9 +51,6 @@ export const saveProfileStatus = (profile) => ({type: SAVE_PROFILE_STATUS_TYPE, 
 
 export const getProfileForCurrentUser = (userId) => {
     return (dispatch) => {
-        if (!userId) {
-            userId = 11;
-        }
         profileAPI.getProfileForCurrentUser(userId).then(response => {
             dispatch(setProfile(response.data));
         })

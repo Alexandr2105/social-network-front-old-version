@@ -3,6 +3,14 @@ import {settings} from "../utils/settings";
 
 const instance = axios.create({withCredentials: true, baseURL: settings.BACK_ADDRESS})
 
+// instance.interceptors.request.use(config => {
+//      if (token) {
+//          config.headers.Authorization = `Bearer ${token}`;
+//      }
+//
+//     return config;
+// });
+
 export const usersAPI = {
     getUsers(pageNumber) {
         return instance.get(`/users?pageNumber=${pageNumber}`)
