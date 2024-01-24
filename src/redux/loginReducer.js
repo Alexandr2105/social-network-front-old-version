@@ -13,6 +13,7 @@ const SET_AUTH_STATE = "SET_AUTH_STATE";
 const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_STATE: {
+            debugger
             return {...state, email: action.email, fullName: action.fullName, id: action.userId, isAuth: action.isAuth}
         }
         default:
