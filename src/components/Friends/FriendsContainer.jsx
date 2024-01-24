@@ -1,8 +1,9 @@
 import {connect} from "react-redux";
 import Friends from "./Friends";
 import React from "react";
+import {getSidebar} from "../../redux/selectors/sidebarSelector";
 
-export class FriendsContainer extends React.Component{
+export class FriendsContainer extends React.Component {
     componentDidMount() {
     }
 
@@ -13,8 +14,8 @@ export class FriendsContainer extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        sidebar: state.sidebarReducer.sidebar,
+        sidebar: getSidebar(state),
     }
 }
 
-export default connect(mapStateToProps,{})(FriendsContainer);
+export default connect(mapStateToProps, {})(FriendsContainer);

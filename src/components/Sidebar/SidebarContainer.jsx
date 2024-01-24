@@ -1,6 +1,7 @@
 import Sidebar from "./Sidebar";
 import {connect} from "react-redux";
 import React from "react";
+import {getSidebar} from "../../redux/selectors/sidebarSelector";
 
 export class SidebarContainer extends React.Component {
     render() {
@@ -10,7 +11,7 @@ export class SidebarContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        sidebar: state.sidebarReducer.sidebar,
+        sidebar: getSidebar(state),
     }
 }
 

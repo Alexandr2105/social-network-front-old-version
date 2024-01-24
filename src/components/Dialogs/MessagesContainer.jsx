@@ -4,6 +4,8 @@ import React from "react";
 import Messages from "./Messages";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {getDialogs, getMessages} from "../../redux/selectors/dialogsSelectors";
+import {getAuth} from "../../redux/selectors/headerSelectors";
 
 export class MessagesContainer extends React.Component {
     componentDidMount() {
@@ -17,9 +19,9 @@ export class MessagesContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        messages: state.dialogsReducer.messages,
-        dialogs: state.dialogsReducer.dialogs,
-        isAuth: state.loginReducer.isAuth,
+        messages: getMessages(state),
+        dialogs: getDialogs(state),
+        isAuth: getAuth(state),
     };
 }
 

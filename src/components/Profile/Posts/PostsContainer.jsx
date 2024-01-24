@@ -3,6 +3,7 @@ import Posts from "./Posts";
 import {connect} from "react-redux";
 import React from "react";
 import {compose} from "redux";
+import {getPosts} from "../../../redux/selectors/profileSelectors";
 
 export class PostsContainer extends React.Component {
     render() {
@@ -12,7 +13,7 @@ export class PostsContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.profileReducer.posts,
+        posts: getPosts(state),
     };
 }
 

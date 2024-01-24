@@ -1,8 +1,9 @@
 import {connect} from "react-redux";
-import {followOrUnfollowShowStatus, getUsers, setClickButton} from "../../redux/usersReducer";
+import {followOrUnfollowShowStatus, users, setClickButton} from "../../redux/usersReducer";
 import React from "react";
 import Users from "./Users";
 import {compose} from "redux";
+import {getClickButton, getCurrentPage, getFetching, getPageCount, getUsers} from "../../redux/selectors/usersSelectors";
 
 class UsersContainer extends React.Component {
 
@@ -24,14 +25,14 @@ class UsersContainer extends React.Component {
 
 const mapStateToPops = (state) => {
     return {
-        users: state.usersReducer.users,
-        pagesCount: state.usersReducer.pagesCount,
-        currentPage: state.usersReducer.currentPage,
-        isFetching: state.usersReducer.isFetching,
-        isClickButton: state.usersReducer.isClickButton,
+        users: getUsers(state),
+        pagesCount: getPageCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getFetching(state),
+        isClickButton: getClickButton(state),
     }
 }
 
 export default compose(connect(mapStateToPops, {
-    setClickButton, getUsers, followOrUnfollowShowStatus,
+    setClickButton, getUsers: users, followOrUnfollowShowStatus,
 }))(UsersContainer);

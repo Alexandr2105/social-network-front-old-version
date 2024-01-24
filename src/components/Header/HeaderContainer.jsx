@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import Header from "./Header";
 import {logout} from "../../redux/loginReducer";
 import {compose} from "redux";
+import {getAuth, getEmail, getFullName, getUserId} from "../../redux/selectors/headerSelectors";
 
 class HeaderContainer extends React.Component {
     render() {
@@ -12,10 +13,10 @@ class HeaderContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        id: state.loginReducer.id,
-        fullName: state.loginReducer.fullName,
-        email: state.loginReducer.email,
-        isAuth: state.loginReducer.isAuth,
+        id: getUserId(state),
+        fullName: getFullName(state),
+        email: getEmail(state),
+        isAuth: getAuth(state),
     }
 }
 
