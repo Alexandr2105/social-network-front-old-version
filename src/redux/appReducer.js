@@ -4,7 +4,7 @@ const initialState = {
     appInitialized: false,
 }
 
-const APP_INITIALIZED = "APP_INITIALIZED";
+const APP_INITIALIZED = "social-network/app/APP_INITIALIZED";
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -21,10 +21,9 @@ const appReducer = (state = initialState, action) => {
 
 const successInitialized = () => ({type: APP_INITIALIZED});
 
-export const appInitializing = () => (dispatch) => {
-    Promise.all([dispatch(getUserInformation())]).then(() => {
-        dispatch(successInitialized());
-    });
+export const appInitializing = () => async (dispatch) => {
+    await Promise.all([dispatch(getUserInformation())]);
+    dispatch(successInitialized());
 }
 
 export default appReducer;
