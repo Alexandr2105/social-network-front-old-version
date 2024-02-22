@@ -35,7 +35,7 @@ const initialState = {
     ],
 };
 
-const ADD_MESSAGE_ACTION_TYPE = "ADD_MESSAGE_ACTION_TYPE";
+const ADD_MESSAGE_ACTION_TYPE = "social-network/dialogs/ADD_MESSAGE_ACTION_TYPE";
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {

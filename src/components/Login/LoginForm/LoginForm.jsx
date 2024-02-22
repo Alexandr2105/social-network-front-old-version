@@ -17,7 +17,7 @@ const LoginForm = (props) => {
                 <Field validate={[required]} placeholder="password" component={Input} name="password" type="password"/>
             </div>
             <div>
-                <Field component="input" type="checkbox" name="remember me"/>Remember me
+                <Field component="input" type="checkbox" name="rememberMe"/>Remember me
             </div>
             <div>
                 <button disabled={props.invalid}>Login</button>

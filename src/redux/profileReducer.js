@@ -20,9 +20,9 @@ const initialState = {
 };
 
 
-const ADD_POST_ACTION_TYPE = "ADD_POST_ACTION_TYPE";
-const UPDATE_PROFILE_ACTION_TYPE = "UPDATE_PROFILE_ACTION_TYPE";
-const SAVE_PROFILE_STATUS_TYPE = "SAVE_PROFILE_STATUS";
+const ADD_POST_ACTION_TYPE = "social-network/profile/ADD_POST_ACTION_TYPE";
+const UPDATE_PROFILE_ACTION_TYPE = "social-network/profile/UPDATE_PROFILE_ACTION_TYPE";
+const SAVE_PROFILE_STATUS_TYPE = "social-network/profile/SAVE_PROFILE_STATUS";
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {

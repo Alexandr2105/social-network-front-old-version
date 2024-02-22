@@ -8,7 +8,7 @@ const initialState = {
     isAuth: false,
 }
 
-const SET_AUTH_STATE = "SET_AUTH_STATE";
+const SET_AUTH_STATE = "social-network/login/SET_AUTH_STATE";
 
 const loginReducer = (state = initialState, action) => {
     switch (action.type) {

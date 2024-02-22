@@ -8,13 +8,13 @@ const initialState = {
     isClickButton: [],
 }
 
-const FOLLOW_ON = "FOLLOW_ON";
-const FOLLOW_OFF = "FOLLOW_OFF";
-const SET_USERS = "SET_USERS";
-const SET_PAGES_COUNT = "SET_PAGES_COUNT";
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const IS_FETCHING = "IS_FETCHING";
-const IS_CLICK_BUTTON = "IS_CLICK_BUTTON";
+const FOLLOW_ON = "social-network/users/FOLLOW_ON";
+const FOLLOW_OFF = "social-network/users/FOLLOW_OFF";
+const SET_USERS = "social-network/users/SET_USERS";
+const SET_PAGES_COUNT = "social-network/users/SET_PAGES_COUNT";
+const SET_CURRENT_PAGE = "social-network/users/SET_CURRENT_PAGE";
+const IS_FETCHING = "social-network/users/IS_FETCHING";
+const IS_CLICK_BUTTON = "social-network/users/IS_CLICK_BUTTON";
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
