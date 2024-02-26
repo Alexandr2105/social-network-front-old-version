@@ -6,6 +6,7 @@ const initialState = {
     currentPage: 1,
     isFetching: false,
     isClickButton: [],
+    viewPages: 5,
 }
 
 const FOLLOW_ON = "social-network/users/FOLLOW_ON";

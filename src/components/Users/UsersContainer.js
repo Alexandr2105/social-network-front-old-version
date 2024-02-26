@@ -3,9 +3,19 @@ import {followOrUnfollowShowStatus, users, setClickButton} from "../../redux/use
 import React from "react";
 import Users from "./Users";
 import {compose} from "redux";
-import {getClickButton, getCurrentPage, getFetching, getPageCount, getUsers} from "../../redux/selectors/usersSelectors";
+import {
+    getClickButton,
+    getCurrentPage,
+    getFetching,
+    getPageCount,
+    getPagesForView,
+    getUsers
+} from "../../redux/selectors/usersSelectors";
 
 class UsersContainer extends React.Component {
+    state = {
+        part: 1,
+    }
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage);
@@ -15,11 +25,21 @@ class UsersContainer extends React.Component {
         this.props.getUsers(p);
     }
 
+    onClickNext = () => {
+        this.setState({part: this.state.part + 1});
+    }
+
+    onClickPrev = () => {
+        this.setState({part: this.state.part - 1});
+    }
+
     render() {
         return <Users pagesCount={this.props.pagesCount} currentPage={this.props.currentPage} users={this.props.users}
                       activePage={this.activePage} isClickButton={this.props.isClickButton}
                       setClickButton={this.props.setClickButton} isFetching={this.props.isFetching}
-                      followOrUnfollowShowStatus={this.props.followOrUnfollowShowStatus}/>
+                      followOrUnfollowShowStatus={this.props.followOrUnfollowShowStatus}
+                      viewPages={this.props.viewPages} onClickNext={this.onClickNext} onClickPrev={this.onClickPrev}
+                      state={this.state}/>
     }
 }
 
@@ -30,6 +50,7 @@ const mapStateToPops = (state) => {
         currentPage: getCurrentPage(state),
         isFetching: getFetching(state),
         isClickButton: getClickButton(state),
+        viewPages: getPagesForView(state),
     }
 }
 

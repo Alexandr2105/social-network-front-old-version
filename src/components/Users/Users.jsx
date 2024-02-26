@@ -5,21 +5,34 @@ import Preloader from "../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
-    let arrayPages = [];
-    for (let a = 1; a <= props.pagesCount; a++) {
+
+    const totalParts = Math.ceil(props.pagesCount / props.viewPages);
+
+    const arrayPages = [];
+    let fistPageNumber = (props.viewPages * props.state.part) - (props.viewPages - 1);
+    let totalCurrentPartPages = (props.viewPages * props.state.part);
+    if (totalCurrentPartPages > props.pagesCount) {
+        totalCurrentPartPages = props.pagesCount;
+    }
+
+    for (let a = fistPageNumber; a <= totalCurrentPartPages; a++) {
         arrayPages.push(a);
     }
+
 
     return (
         <>
             {props.isFetching ? <Preloader/> :
                 <div>
+
                     <div className={mod.pages}>
+                        {props.state.part === 1 ? "" : <button onClick={props.onClickPrev}>prev</button>}
                         {
                             arrayPages.map(p => (
                                 <p key={p} className={props.currentPage === p ? mod.currentPage : ""}
                                    onClick={() => props.activePage(p)}>{p}</p>))
                         }
+                        {props.state.part >= totalParts ? "" : <button onClick={props.onClickNext}>next</button>}
                     </div>
 
                     <div>

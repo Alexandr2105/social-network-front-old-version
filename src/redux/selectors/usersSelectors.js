@@ -17,3 +17,7 @@ export const getFetching = (state) => {
 export const getClickButton = (state) => {
     return state.usersReducer.isClickButton;
 }
+
+export const getPagesForView = (state) => {
+    return state.usersReducer.viewPages;
+}
