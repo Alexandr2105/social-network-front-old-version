@@ -16,10 +16,12 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {appInitializing} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import {getAppInitialized} from "./redux/selectors/app.Selector";
+import {getAuthToken} from "./redux/selectors/headerSelectors";
 
 class App extends React.Component {
     componentDidMount() {
-        this.props.appInitializing();
+        this.props.appInitializing(this.props.accessToken);
     }
 
     render() {
@@ -50,7 +52,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    appInitialized: state.appReducer.appInitialized,
+    appInitialized: getAppInitialized(state),
+    accessToken: getAuthToken(state),
 })
 
 export default compose(connect(mapStateToProps, {appInitializing}), withRouter)(App);

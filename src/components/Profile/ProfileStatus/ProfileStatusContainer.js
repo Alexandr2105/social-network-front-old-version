@@ -37,8 +37,7 @@ class ProfileStatusContainer extends React.Component {
 
     render() {
         return <ProfileStatus state={this.state} activeEditMode={this.activeEditMode}
-                              deActiveEditMode={this.deActiveEditMode} onChangeStatus={this.onChangeStatus}
-                              componentDidUpdate={this.componentDidUpdate}/>
+                              deActiveEditMode={this.deActiveEditMode} onChangeStatus={this.onChangeStatus}/>
     }
 }
 

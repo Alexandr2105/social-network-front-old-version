@@ -11,7 +11,7 @@ import {
     getPagesForView,
     getUsers
 } from "../../redux/selectors/usersSelectors";
-import {getAuthToken} from "../../redux/selectors/headerSelectors";
+import {getAuth, getAuthToken} from "../../redux/selectors/headerSelectors";
 
 class UsersContainer extends React.Component {
     state = {
@@ -20,6 +20,12 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.isAuth !== this.props.isAuth) {
+            this.props.getUsers(this.props.currentPage)
+        }
     }
 
     activePage = (p) => {
@@ -40,7 +46,7 @@ class UsersContainer extends React.Component {
                       setClickButton={this.props.setClickButton} isFetching={this.props.isFetching}
                       followOrUnfollowShowStatus={this.props.followOrUnfollowShowStatus}
                       viewPages={this.props.viewPages} onClickNext={this.onClickNext} onClickPrev={this.onClickPrev}
-                      state={this.state} authToken={this.props.authToken}/>
+                      state={this.state} authToken={this.props.authToken} isAuth={this.props.isAuth}/>
     }
 }
 
@@ -53,6 +59,7 @@ const mapStateToPops = (state) => {
         isClickButton: getClickButton(state),
         viewPages: getPagesForView(state),
         authToken: getAuthToken(state),
+        isAuth: getAuth(state),
     }
 }
 

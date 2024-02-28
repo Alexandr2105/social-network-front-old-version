@@ -21,8 +21,8 @@ const appReducer = (state = initialState, action) => {
 
 const successInitialized = () => ({type: APP_INITIALIZED});
 
-export const appInitializing = () => async (dispatch) => {
-    await Promise.all([dispatch(getUserInformation())]);
+export const appInitializing = (accessToken) => async (dispatch) => {
+    await Promise.all([dispatch(getUserInformation(accessToken))]);
     dispatch(successInitialized());
 }
 

@@ -6,7 +6,7 @@ const initialState = {
     fullName: null,
     email: null,
     isAuth: false,
-    token: "",
+    token: localStorage.getItem('authToken') || "",
 }
 
 const SET_AUTH_STATE = "social-network/login/SET_AUTH_STATE";
@@ -15,22 +15,24 @@ const SET_BEARER_TOKEN = "social-network/login/SET_BEARER_TOKEN"
 const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_STATE: {
-            return {...state, email: action.email, fullName: action.fullName, id: action.userId, isAuth: action.isAuth}
+            return {...state, email: action.email, fullName: action.fullName, id: action.userId, isAuth: action.isAuth};
         }
         case SET_BEARER_TOKEN: {
-            return {...state, token: action.token}
+            localStorage.setItem('authToken', action.token);
+            return {...state, token: action.token};
         }
         default:
             return state;
     }
 }
 
-export const setAuthState = (userId, fullName, email, isAuth) => ({
+export const setAuthState = (userId, fullName, email, isAuth, token) => ({
     type: SET_AUTH_STATE,
     userId,
     fullName,
     email,
-    isAuth
+    isAuth,
+    token,
 });
 
 export const setBearerToken = (token) => ({
@@ -63,7 +65,7 @@ export const login = (data) => (dispatch) => {
 export const logout = () => (dispatch) => {
     authAPI.logout().then(response => {
         if (response.status === 204) {
-            dispatch(setAuthState(null, null, null, false));
+            dispatch(setAuthState(null, null, null, false, null));
         }
     })
 }
