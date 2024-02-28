@@ -7,6 +7,7 @@ import AddMessageForm from "./MesageForm/MessageForm";
 const Messages = (props) => {
     const form = (data) => {
         props.createMessage(data.message);
+        props.reset("textMessage");
     }
 
     const message = props.messages.map(m => <Message key={m.id} message={m.message}/>);

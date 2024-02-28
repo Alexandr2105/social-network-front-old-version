@@ -7,6 +7,7 @@ const Posts = (props) => {
     const posts = props.posts.map(p => (<Post key={p.id} message={p.message} likes={p.likes}/>))
     const form = (data) => {
         props.createPost(data.post);
+        props.reset('textsForm');
     }
 
     return (

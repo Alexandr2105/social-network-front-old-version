@@ -16,4 +16,4 @@ const AddMessageForm = (props) => {
     )
 }
 
-export default reduxForm({form: "test"})(AddMessageForm);
+export default reduxForm({form: "textMessage"})(AddMessageForm);
