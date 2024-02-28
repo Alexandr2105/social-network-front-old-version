@@ -13,3 +13,7 @@ export const getEmail = (state) => {
 export const getAuth = (state) => {
     return state.loginReducer.isAuth;
 }
+
+export const getAuthToken = (state) => {
+    return state.loginReducer.token;
+}

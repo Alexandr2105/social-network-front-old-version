@@ -5,7 +5,7 @@ import {getProfileForCurrentUser} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {getProfile} from "../../redux/selectors/profileSelectors";
-import {getUserId} from "../../redux/selectors/headerSelectors";
+import {getAuthToken, getUserId} from "../../redux/selectors/headerSelectors";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -16,7 +16,7 @@ class ProfileContainer extends React.Component {
                 this.props.history.push("/login");
             }
         }
-        this.props.getProfileForCurrentUser(userId);
+        this.props.getProfileForCurrentUser(userId, this.props.authToken);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -31,7 +31,7 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStataToProps = (state) => {
-    return {profile: getProfile(state), userId: getUserId(state)};
+    return {profile: getProfile(state), userId: getUserId(state), authToken: getAuthToken(state)};
 }
 
 export default compose(connect(mapStataToProps, {getProfileForCurrentUser}), withRouter, /*withAuthRedirect*/)(ProfileContainer)

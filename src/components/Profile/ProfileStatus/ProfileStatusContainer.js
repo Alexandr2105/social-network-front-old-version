@@ -4,6 +4,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {getStatus} from "../../../redux/selectors/profileSelectors";
 import {saveStatus} from "../../../redux/profileReducer";
+import {getAuthToken} from "../../../redux/selectors/headerSelectors";
 
 class ProfileStatusContainer extends React.Component {
     state = {
@@ -21,7 +22,7 @@ class ProfileStatusContainer extends React.Component {
 
     deActiveEditMode = () => {
         this.setState({editMode: false});
-        this.props.saveStatus(this.state.status);
+        this.props.saveStatus(this.state.status,this.props.authToken);
     }
 
     onChangeStatus = (e) => {
@@ -42,7 +43,7 @@ class ProfileStatusContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {status: getStatus(state)};
+    return {status: getStatus(state), authToken: getAuthToken(state)};
 }
 
 export default compose(connect(mapStateToProps, {saveStatus}))(ProfileStatusContainer)

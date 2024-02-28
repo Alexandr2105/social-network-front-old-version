@@ -71,15 +71,15 @@ export const users = (currentPage) => {
     }
 }
 
-export const followOrUnfollowShowStatus = (userId, userStatus) => {
+export const followOrUnfollowShowStatus = (userId, userStatus, authToken) => {
     return (dispatch) => {
         dispatch(setClickButton(userId, true));
         let followPromise;
 
         if (userStatus) {
-            followPromise = followerAPI.deleteFollowers(userId);
+            followPromise = followerAPI.deleteFollowers(userId, authToken);
         } else {
-            followPromise = followerAPI.createFollowers(userId);
+            followPromise = followerAPI.createFollowers(userId, authToken);
         }
 
         followPromise

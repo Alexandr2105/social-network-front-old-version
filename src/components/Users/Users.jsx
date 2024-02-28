@@ -47,7 +47,7 @@ const Users = (props) => {
                                         <button
                                             disabled={props.isClickButton.includes(u.id)}
                                             onClick={() =>
-                                                props.followOrUnfollowShowStatus(u.id, u.follow)
+                                                props.followOrUnfollowShowStatus(u.id, u.follow, props.authToken)
                                             }>
                                             {u.follow ? "Follow" : "Unfollow"}
                                         </button>

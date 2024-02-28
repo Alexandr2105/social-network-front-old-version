@@ -1,7 +1,8 @@
 import axios from "axios";
 import {settings} from "../utils/settings";
 
-const instance = axios.create({withCredentials: true, baseURL: settings.BACK_ADDRESS})
+const instance = axios.create({withCredentials: true, baseURL: settings.BACK_ADDRESS});
+const headers = (authToken) => ({headers: {Authorization: `Bearer ${authToken}`}});
 
 // instance.interceptors.request.use(config => {
 //      if (token) {
@@ -18,18 +19,18 @@ export const usersAPI = {
 }
 
 export const followerAPI = {
-    createFollowers(userId) {
-        return instance.post(`/followers/${userId}`).then(response => response.status)
+    createFollowers(userId, authToken) {
+        return instance.post(`/followers/${userId}`, {}, headers(authToken)).then(response => response.status)
     },
 
-    deleteFollowers(userId) {
-        return instance.delete(`/followers/${userId}`).then(response => response.status)
+    deleteFollowers(userId, authToken) {
+        return instance.delete(`/followers/${userId}`, headers(authToken)).then(response => response.status)
     }
 }
 
 export const authAPI = {
-    getMeInformation() {
-        return instance.get(`/auth/me`).then(response => {
+    getMeInformation(authToken) {
+        return instance.get(`/auth/me`, headers(authToken)).then(response => {
                 return {
                     data: response.data,
                     status: response.status,
@@ -48,12 +49,12 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-    getProfileForCurrentUser(userId) {
-        return instance.get(`/profile/${userId}`);
+    getProfileForCurrentUser(userId, authToken) {
+        return instance.get(`/profile/${userId}`, headers(authToken));
     },
 
-    updateProfileStatus(status) {
-        return instance.post("/profile", {status: status}).then(response => {
+    updateProfileStatus(status, authToken) {
+        return instance.post("/profile", {status: status}, headers(authToken)).then(response => {
             return {
                 data: response.data,
                 status: response.status,

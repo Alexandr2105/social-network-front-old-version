@@ -49,9 +49,9 @@ export const addPostActionCreator = (post) => ({type: ADD_POST_ACTION_TYPE, post
 export const setProfile = (profile) => ({type: UPDATE_PROFILE_ACTION_TYPE, profile: profile});
 export const saveProfileStatus = (profile) => ({type: SAVE_PROFILE_STATUS_TYPE, profile: profile});
 
-export const getProfileForCurrentUser = (userId) => {
+export const getProfileForCurrentUser = (userId, authToken) => {
     return (dispatch) => {
-        profileAPI.getProfileForCurrentUser(userId).then(response => {
+        profileAPI.getProfileForCurrentUser(userId, authToken).then(response => {
             dispatch(setProfile(response.data));
         })
     }
@@ -63,9 +63,9 @@ export const createPost = (post) => {
     }
 }
 
-export const saveStatus = (status) => {
+export const saveStatus = (status,authToken) => {
     return (dispatch) => {
-        profileAPI.updateProfileStatus(status).then(response => {
+        profileAPI.updateProfileStatus(status,authToken).then(response => {
             if (response.status === 201) dispatch(saveProfileStatus(response.data))
         });
     }
