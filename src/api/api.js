@@ -45,7 +45,11 @@ export const authAPI = {
 
     logout() {
         return instance.delete("auth/logout");
-    }
+    },
+
+    refreshToken(){
+        return instance.post("auth/refresh-token");
+    },
 }
 
 export const profileAPI = {

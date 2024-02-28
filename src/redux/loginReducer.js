@@ -47,6 +47,14 @@ export const getUserInformation = (token) => {
                 dispatch(setAuthState(id, fullName, email, true));
             }
         }).catch(() => {
+            return authAPI.refreshToken().then(response => {
+                const {accessToken} = response.data;
+                if (response.status === 201) {
+                    dispatch(setBearerToken(accessToken));
+                    dispatch(getUserInformation(accessToken));
+                }
+            }).catch(() => {
+            })
         })
     }
 }
