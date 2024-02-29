@@ -1,4 +1,5 @@
-import {profileAPI} from "../api/api";
+import {authAPI, profileAPI} from "../api/api";
+import {setBearerToken} from "./loginReducer";
 
 const initialState = {
     posts: [
@@ -53,6 +54,15 @@ export const getProfileForCurrentUser = (userId, authToken) => {
     return (dispatch) => {
         profileAPI.getProfileForCurrentUser(userId, authToken).then(response => {
             dispatch(setProfile(response.data));
+        }).catch(() => {
+            return authAPI.refreshToken().then(response => {
+                const {accessToken} = response.data;
+                if (response.status === 201) {
+                    dispatch(setBearerToken(accessToken));
+                    dispatch(getProfileForCurrentUser(userId,accessToken));
+                }
+            }).catch(() => {
+            })
         })
     }
 }
