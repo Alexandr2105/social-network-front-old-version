@@ -8,7 +8,7 @@ import {getProfile} from "../../redux/selectors/profileSelectors";
 import {getAuthToken, getUserId} from "../../redux/selectors/headerSelectors";
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.userId;
@@ -17,11 +17,18 @@ class ProfileContainer extends React.Component {
             }
         }
         this.props.getProfileForCurrentUser(userId, this.props.authToken);
+    };
+
+    componentDidMount() {
+        this.refreshProfile();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.userId !== this.props.userId) {
             this.props.history.push("/login");
+        }
+        if (prevProps.match.params.userId !== this.props.match.params.userId) {
+            this.refreshProfile();
         }
     }
 

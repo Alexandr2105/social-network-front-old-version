@@ -37,7 +37,7 @@ class App extends React.Component {
                     <SidebarContainer/>
                 </div>
                 <div className="nav-links">
-                    <Suspense fallback={Preloader}>
+                    <Suspense fallback={<Preloader/>}>
                         <Route path="/profile/:userId?"
                                render={() => <ProfileContainer/>}/>
                         <Route exact path="/message"
