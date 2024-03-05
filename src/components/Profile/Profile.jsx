@@ -3,16 +3,18 @@ import mod from "./Profile.module.css"
 import PostsContainer from "./Posts/PostsContainer";
 import Preloader from "../common/Preloader/Preloader";
 import ProfileStatusContainer from "./ProfileStatus/ProfileStatusContainer";
+import avatar from "../../assets/images/images.png";
 
 const Profile = (props) => {
     if (!props.profile) {
         return <Preloader/>
     }
+
     return (
         <div className={mod.content}>
-            {/*<img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="img"/>*/}
-            <img src={props.profile.avatar || "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"}
+            <img src={props.profile.avatar || avatar}
                  alt="img"/>
+            <input key={props.profile.avatar} type={"file"} onChange={props.onChange}/>
             <ProfileStatusContainer/>
             <div>
                 <PostsContainer/>

@@ -24,6 +24,7 @@ const initialState = {
 const ADD_POST_ACTION_TYPE = "social-network/profile/ADD_POST_ACTION_TYPE";
 const UPDATE_PROFILE_ACTION_TYPE = "social-network/profile/UPDATE_PROFILE_ACTION_TYPE";
 const SAVE_PROFILE_STATUS_TYPE = "social-network/profile/SAVE_PROFILE_STATUS";
+const SAVE_AVATAR = "social-network/profile/SAVE_AVATAR";
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -41,6 +42,9 @@ const profileReducer = (state = initialState, action) => {
         case SAVE_PROFILE_STATUS_TYPE: {
             return {...state, profile: action.profile}
         }
+        case SAVE_AVATAR: {
+            return {...state, profile: {...state.profile, avatar: action.avatar}}
+        }
         default :
             return state;
     }
@@ -49,6 +53,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = (post) => ({type: ADD_POST_ACTION_TYPE, post});
 export const setProfile = (profile) => ({type: UPDATE_PROFILE_ACTION_TYPE, profile: profile});
 export const saveProfileStatus = (profile) => ({type: SAVE_PROFILE_STATUS_TYPE, profile: profile});
+export const saveAvatarForUser = (avatar) => ({type: SAVE_AVATAR, avatar: avatar});
 
 export const getProfileForCurrentUser = (userId, authToken) => {
     return (dispatch) => {
@@ -59,7 +64,7 @@ export const getProfileForCurrentUser = (userId, authToken) => {
                 const {accessToken} = response.data;
                 if (response.status === 201) {
                     dispatch(setBearerToken(accessToken));
-                    dispatch(getProfileForCurrentUser(userId,accessToken));
+                    dispatch(getProfileForCurrentUser(userId, accessToken));
                 }
             }).catch(() => {
             })
@@ -73,11 +78,19 @@ export const createPost = (post) => {
     }
 }
 
-export const saveStatus = (status,authToken) => {
+export const saveStatus = (status, authToken) => {
     return (dispatch) => {
-        profileAPI.updateProfileStatus(status,authToken).then(response => {
+        profileAPI.updateProfileStatus(status, authToken).then(response => {
             if (response.status === 201) dispatch(saveProfileStatus(response.data))
         });
+    }
+}
+
+export const saveAvatar = (avatar, authToken) => {
+    return (dispatch) => {
+        profileAPI.saveAvatar(avatar, authToken).then(response => {
+            if (response.status === 201) dispatch(saveAvatarForUser(response.data));
+        })
     }
 }
 

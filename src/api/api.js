@@ -47,7 +47,7 @@ export const authAPI = {
         return instance.delete("auth/logout");
     },
 
-    refreshToken(){
+    refreshToken() {
         return instance.post("auth/refresh-token");
     },
 }
@@ -62,6 +62,18 @@ export const profileAPI = {
             return {
                 data: response.data,
                 status: response.status,
+            }
+        });
+    },
+
+    saveAvatar(avatar, authToken) {
+        const formData = new FormData();
+        formData.append("avatar", avatar);
+
+        return instance.post("/profile/save-avatar", formData, {
+            headers: {
+                "Content-type": "multipart/form-data",
+                Authorization: `Bearer ${authToken}`
             }
         });
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getProfileForCurrentUser} from "../../redux/profileReducer";
+import {getProfileForCurrentUser, saveAvatar} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {getProfile} from "../../redux/selectors/profileSelectors";
@@ -32,8 +32,12 @@ class ProfileContainer extends React.Component {
         }
     }
 
+    onChange = (e) => {
+        this.props.saveAvatar(e.currentTarget.files[0], this.props.authToken);
+    }
+
     render() {
-        return <Profile profile={this.props.profile}/>
+        return <Profile profile={this.props.profile} onChange={this.onChange}/>
     }
 }
 
@@ -41,4 +45,7 @@ const mapStataToProps = (state) => {
     return {profile: getProfile(state), userId: getUserId(state), authToken: getAuthToken(state)};
 }
 
-export default compose(connect(mapStataToProps, {getProfileForCurrentUser}), withRouter, /*withAuthRedirect*/)(ProfileContainer)
+export default compose(connect(mapStataToProps, {
+    getProfileForCurrentUser,
+    saveAvatar
+}), withRouter, /*withAuthRedirect*/)(ProfileContainer)
